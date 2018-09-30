@@ -1,4 +1,6 @@
 package com.concretepage.entity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -30,7 +32,9 @@ public class SpindleMachineDetailsBean{
 
     @OneToMany(mappedBy = "machineDetailsBean",
             cascade = CascadeType.ALL,
-            orphanRemoval = true)
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Set<SpindleMasterDetailsBean> spindleMasterDetailsSet = new HashSet<SpindleMasterDetailsBean>();
 
 

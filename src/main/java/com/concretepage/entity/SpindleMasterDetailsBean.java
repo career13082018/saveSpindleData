@@ -38,9 +38,9 @@ public class SpindleMasterDetailsBean{
     @Column(name="spindle_master")
     private String spindleMaster;
 
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idmachine_details")
+    @JsonBackReference
     private SpindleMachineDetailsBean machineDetailsBean;
 
     public static long getSerialVersionUID() {

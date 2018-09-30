@@ -1,6 +1,7 @@
 package com.concretepage.controller;
 import java.util.List;
 
+import com.concretepage.entity.SpindleMachineDetailsBean;
 import com.concretepage.service.IMachineSpindleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -9,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import com.concretepage.entity.SpindleMachineDetailsBean;
+import com.concretepage.entity.SpindleMasterDetailsBean;
 
 import com.concretepage.entity.Article;
 import com.concretepage.service.IArticleService;
@@ -27,8 +28,17 @@ public class ArticleController {
 		return new ResponseEntity<Article>(article, HttpStatus.OK);
 	}*/
 	@GetMapping("articles")
-	public ResponseEntity<List<SpindleMachineDetailsBean>> getAllArticles() {
-		List<SpindleMachineDetailsBean> list = machineSpindleService.getAllArticles();
+	public ResponseEntity<List<SpindleMasterDetailsBean>> getAllArticles() {
+		List<SpindleMasterDetailsBean> list = machineSpindleService.getAllArticles();
+
+
+
+		return new ResponseEntity<List<SpindleMasterDetailsBean>>(list, HttpStatus.OK);
+	}
+
+	@GetMapping("machinedetails")
+	public ResponseEntity<List<SpindleMachineDetailsBean>> getMachineDetails() {
+		List<SpindleMachineDetailsBean> list = machineSpindleService.getAllMachineDetails();
 
 
 
