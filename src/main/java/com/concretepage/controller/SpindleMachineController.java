@@ -1,24 +1,21 @@
 package com.concretepage.controller;
-import java.util.List;
 
 import com.concretepage.entity.SpindleMachineDetailsBean;
 import com.concretepage.service.IMachineSpindleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
-import com.concretepage.entity.SpindleMasterDetailsBean;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.concretepage.entity.Article;
-import com.concretepage.service.IArticleService;
+import java.util.List;
 
 @CrossOrigin(origins = {"*"}, maxAge = 4800)
 @RestController
-@RequestMapping("user")
-public class ArticleController {
+@RequestMapping("api")
+public class SpindleMachineController {
 	@Autowired
 	private IMachineSpindleService machineSpindleService;
 
@@ -27,21 +24,10 @@ public class ArticleController {
 		Article article = articleService.getArticleById(id);
 		return new ResponseEntity<Article>(article, HttpStatus.OK);
 	}*/
-	@GetMapping("articles")
-	public ResponseEntity<List<SpindleMasterDetailsBean>> getAllArticles() {
-		List<SpindleMasterDetailsBean> list = machineSpindleService.getAllArticles();
-
-
-
-		return new ResponseEntity<List<SpindleMasterDetailsBean>>(list, HttpStatus.OK);
-	}
 
 	@GetMapping("machinedetails")
 	public ResponseEntity<List<SpindleMachineDetailsBean>> getMachineDetails() {
 		List<SpindleMachineDetailsBean> list = machineSpindleService.getAllMachineDetails();
-
-
-
 		return new ResponseEntity<List<SpindleMachineDetailsBean>>(list, HttpStatus.OK);
 	}
 	/*@PostMapping("article")

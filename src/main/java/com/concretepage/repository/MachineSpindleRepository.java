@@ -1,10 +1,7 @@
 package com.concretepage.repository;
 
-import java.util.List;
-
-import org.springframework.data.repository.CrudRepository;
-
 import com.concretepage.entity.SpindleMachineDetailsBean;
+import org.springframework.data.repository.CrudRepository;
 
 public interface MachineSpindleRepository extends CrudRepository<SpindleMachineDetailsBean, Long>  {
    /* List<Article> findByTitle(String title);

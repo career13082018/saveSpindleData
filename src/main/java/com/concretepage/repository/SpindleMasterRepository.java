@@ -1,12 +1,10 @@
 package com.concretepage.repository;
 
-import com.concretepage.entity.SpindleMachineDetailsBean;
 import com.concretepage.entity.SpindleMasterDetailsBean;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import java.util.List;
 import java.util.Set;
 
 public interface SpindleMasterRepository extends CrudRepository<SpindleMasterDetailsBean, Long>  {

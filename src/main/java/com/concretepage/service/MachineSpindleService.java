@@ -1,14 +1,12 @@
 package com.concretepage.service;
 
 
-import com.concretepage.entity.Article;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Service;
-import com.concretepage.entity.SpindleMasterDetailsBean;
 import com.concretepage.entity.SpindleMachineDetailsBean;
+import com.concretepage.entity.SpindleMasterDetailsBean;
 import com.concretepage.repository.MachineSpindleRepository;
 import com.concretepage.repository.SpindleMasterRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
