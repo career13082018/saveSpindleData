@@ -1,10 +1,10 @@
 package com.concretepage.listener;
 
 import com.concretepage.entity.SpindleMachineDetailsBean;
-import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.stereotype.Service;
 import com.concretepage.service.MachineSpindleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
 
 @Service
 public class KafkaConsumer {
@@ -14,10 +14,8 @@ public class KafkaConsumer {
 
     @KafkaListener(topics = "mqtt-listener-topic",containerFactory = "kafkaListenerContainerFactory")
     public void consume(SpindleMachineDetailsBean spindleMachineBean) {
-        System.out.println("Consumed message: " + spindleMachineBean.getMachineUUID());
-        System.out.println("Consumed message: " + spindleMachineBean.getSpindleMaster());
-        System.out.println("Consumed message: " + spindleMachineBean.getSpindleMasterDetailsSet());
-
+        System.out.println("Consumed message[MachineUUID :" + spindleMachineBean.getMachineUUID()
+        +",SpindleMaster:"+spindleMachineBean.getSpindleMaster()+",SpindleMasterDetailsSet:"+spindleMachineBean.getSpindleMasterDetailsSet()+"]");
         machineSpindleService.addSpindleData(spindleMachineBean);
     }
 
