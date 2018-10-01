@@ -4,18 +4,18 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>daily-expenses-app</groupId>
-	<artifactId>dailyexpensesapp</artifactId>
+	<artifactId>SpindleMachine</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>daily expenses app</name>
-	<description>Daily expenses simple app</description>
+	<name>SpindleMachine</name>
+	<description>Spindle Machine Details</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.4.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 
 	<properties>
