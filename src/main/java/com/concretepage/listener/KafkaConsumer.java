@@ -14,8 +14,8 @@ public class KafkaConsumer {
 
     @KafkaListener(topics = "mqtt-listener-topic",containerFactory = "kafkaListenerContainerFactory")
     public void consume(SpindleMachineDetailsBean spindleMachineBean) {
-        System.out.println("Consumed message[MachineUUID :" + spindleMachineBean.getMachineUUID()
-        +",SpindleMaster:"+spindleMachineBean.getSpindleMaster()+",SpindleMasterDetailsSet:"+spindleMachineBean.getSpindleMasterDetailsSet()+"]");
+//        System.out.println("Consumed message[MachineUUID :" + spindleMachineBean.getMachineUUID()
+//        +",SpindleMaster:"+spindleMachineBean.getSpindleMaster()+",SpindleMasterDetailsSet:"+spindleMachineBean.getSpindleMasterDetailsSet()+"]");
         machineSpindleService.addSpindleData(spindleMachineBean);
     }
 

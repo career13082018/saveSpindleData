@@ -1,14 +1,13 @@
 package com.concretepage.controller;
 
+import com.concretepage.entity.MachineSettingDetailsBean;
 import com.concretepage.entity.SpindleMachineDetailsBean;
 import com.concretepage.service.IMachineSpindleService;
+import com.concretepage.service.MachineSettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,6 +17,9 @@ import java.util.List;
 public class SpindleMachineController {
 	@Autowired
 	private IMachineSpindleService machineSpindleService;
+
+	@Autowired
+	private MachineSettingService machineSettingService;
 
 	/*@GetMapping("article/{id}")
 	public ResponseEntity<Article> getArticleById(@PathVariable("id") Integer id) {
@@ -30,6 +32,15 @@ public class SpindleMachineController {
 		List<SpindleMachineDetailsBean> list = machineSpindleService.getAllMachineDetails();
 		return new ResponseEntity<List<SpindleMachineDetailsBean>>(list, HttpStatus.OK);
 	}
+
+	@PostMapping("machinesettings")
+	public int saveMachineSettings(@RequestBody MachineSettingDetailsBean machineSettingDetailsBean){
+		System.out.println("Inside machinesettings method");
+		int status = machineSettingService.saveMachineSettings(machineSettingDetailsBean);
+		System.out.println("status :"+status);
+		return status;
+	}
+
 	/*@PostMapping("article")
 	public ResponseEntity<Void> addArticle(@RequestBody Article article, UriComponentsBuilder builder) {
         boolean flag = articleService.addArticle(article);
@@ -40,6 +51,7 @@ public class SpindleMachineController {
         headers.setLocation(builder.path("/article/{id}").buildAndExpand(article.getArticleId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
+
 	@PutMapping("article")
 	public ResponseEntity<Article> updateArticle(@RequestBody Article article) {
 		articleService.updateArticle(article);

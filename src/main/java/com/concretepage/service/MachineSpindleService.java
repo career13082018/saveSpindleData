@@ -5,6 +5,7 @@ import com.concretepage.entity.SpindleMachineDetailsBean;
 import com.concretepage.entity.SpindleMasterDetailsBean;
 import com.concretepage.repository.MachineSpindleRepository;
 import com.concretepage.repository.SpindleMasterRepository;
+import com.concretepage.repository.MachineSettingServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,9 @@ public class MachineSpindleService implements IMachineSpindleService {
     private MachineSpindleRepository machineSpindleRepository;
     @Autowired
     private SpindleMasterRepository spindleMasterRepository;
+
+    @Autowired
+    private MachineSettingServiceRepository machineSettingServiceRepository;
 
     public static final String FIND_PROJECTS = "SELECT projectId, projectName FROM projects";
 
@@ -41,19 +45,14 @@ public class MachineSpindleService implements IMachineSpindleService {
     public List<SpindleMasterDetailsBean> getAllArticles(){
         List<SpindleMasterDetailsBean> list = new ArrayList<>();
         spindleMasterRepository.findAll().forEach(e -> list.add(e));
-
         ArrayList<SpindleMasterDetailsBean> spindleMastList = new ArrayList<SpindleMasterDetailsBean>();
         return list;
     }
-
-
-
 
     public Set<SpindleMasterDetailsBean> getSpecificSpindleMasters(String spindleMasterName) {
         Set<SpindleMasterDetailsBean> obj = spindleMasterRepository.getMasterDetails(spindleMasterName);
         return obj;
     }
-
 
     @Override
     public List<SpindleMachineDetailsBean> getAllMachineDetails(){

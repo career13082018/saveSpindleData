@@ -1,5 +1,6 @@
 package com.concretepage.service;
 
+import com.concretepage.entity.MachineSettingDetailsBean;
 import com.concretepage.entity.SpindleMachineDetailsBean;
 import com.concretepage.entity.SpindleMasterDetailsBean;
 
@@ -11,4 +12,5 @@ public interface IMachineSpindleService {
     List<SpindleMachineDetailsBean> getAllMachineDetails();
     boolean addSpindleData(SpindleMachineDetailsBean spindleMachineDetailsBean);
     Set<SpindleMasterDetailsBean> getSpecificSpindleMasters(String spindleMasterName);
+
 }
