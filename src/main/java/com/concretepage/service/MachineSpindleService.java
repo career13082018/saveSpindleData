@@ -1,18 +1,22 @@
 package com.concretepage.service;
 
 
+import com.concretepage.entity.MachineSettingDetailsBean;
 import com.concretepage.entity.SpindleMachineDetailsBean;
 import com.concretepage.entity.SpindleMasterDetailsBean;
 import com.concretepage.repository.MachineSpindleRepository;
 import com.concretepage.repository.SpindleMasterRepository;
 import com.concretepage.repository.MachineSettingServiceRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.datetime.DateFormatter;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.text.FieldPosition;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
+@Slf4j
 @Service
 public class MachineSpindleService implements IMachineSpindleService {
 
@@ -20,6 +24,8 @@ public class MachineSpindleService implements IMachineSpindleService {
     private MachineSpindleRepository machineSpindleRepository;
     @Autowired
     private SpindleMasterRepository spindleMasterRepository;
+    @Autowired
+    private MachineSettingServiceRepository repository;
 
     @Autowired
     private MachineSettingServiceRepository machineSettingServiceRepository;
@@ -79,5 +85,34 @@ public class MachineSpindleService implements IMachineSpindleService {
         }
 
         return list;
+    }
+
+    public int saveMachineSettings(MachineSettingDetailsBean machineSettingDetailsBean){
+        System.out.println("service class method -- Front R Dia:"+machineSettingDetailsBean.getFrontRDia());
+        System.out.println("service class method -- shift1:"+machineSettingDetailsBean.getShiftonestime());
+        System.out.println("service class method -- shift2:"+machineSettingDetailsBean.getShifttwostime());
+        System.out.println("service class method -- shift3:"+machineSettingDetailsBean.getShiftthreestime());
+        System.out.println("service class method -- generalshift:"+machineSettingDetailsBean.getGeneralshiftstime());
+        System.out.println("service class method -- shift1e:"+machineSettingDetailsBean.getShiftoneetime());
+        System.out.println("service class method -- shift2e:"+machineSettingDetailsBean.getShifttwoetime());
+        System.out.println("service class method -- shift3e:"+machineSettingDetailsBean.getShiftthreeetime());
+        System.out.println("service class method -- generalshifte:"+machineSettingDetailsBean.getGeneralshiftetime());
+        System.out.println("service class method -- getIdleTime:"+machineSettingDetailsBean.getIdleTime());
+        MachineSettingDetailsBean machineSettingDetailsBean1=machineSettingDetailsBean;
+        System.out.println("machineSettingDetailsBean1 :"+machineSettingDetailsBean1.toString());
+        Date idleTime=null;
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssZ");
+            String dt=simpleDateFormat.format(machineSettingDetailsBean.getIdleTime());
+            idleTime=simpleDateFormat.parse(dt);
+            log.info("idleTime :"+idleTime);
+        }catch (Exception ex){
+            System.out.println("Error : "+ex.getMessage());
+        }
+
+
+        int statusCode = repository.saveMachineSettings(machineSettingDetailsBean.getSplMaster(),machineSettingDetailsBean.getFrontRDia(), machineSettingDetailsBean.getShiftonestime());
+        System.out.println("status : "+statusCode);
+        return statusCode;
     }
 }
